@@ -1,0 +1,15 @@
+**/.classpath
+**/.dockerignore
+**/.env
+**/.git
+**/.gitignore
+**/.project
+**/.settings
+**/.toolstarted
+**/.vs
+**/.vscode
+**/*.*proj.user
+**/*-lock.json
+**/bin
+**/obj
+**/Dockerfile
