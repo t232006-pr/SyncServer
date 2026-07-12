@@ -7,9 +7,7 @@ namespace SyncServer
 {
     public interface ISyncTables
     {
-        [Key]
         public int Id { get; set; }
-        [Key]
         public uint DBID { get; set; }
         public DateTime? Modification_Time { get; set; }
         public bool IsDeleted { get; set; }
@@ -22,10 +20,8 @@ namespace SyncServer
 
     public class Dict : ISyncTables
     {
-        [Key]
         [Column("Number")]
         public int Id { get; set; }
-        [Key]
         public uint DBID { get; set; }
         public string Word { get; set; } = string.Empty;
         public string Translation { get; set; } = string.Empty;
@@ -45,17 +41,16 @@ namespace SyncServer
         // Если это поле нужно
         public bool Spot { get; set; }
     }
+    
 
     [Table("topic")]
     [Index(nameof(Name))]
     public class Topic: ISyncTables
     {
-        [Key]
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public bool IsDeleted { get; set; }
         public DateTime? Modification_Time { get; set; }
-        [Key]
         public uint DBID { get; set; }
     }
 }
