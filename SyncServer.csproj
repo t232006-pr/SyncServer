@@ -7,6 +7,20 @@
     <OpenApiGenerateDocuments>false</OpenApiGenerateDocuments>
   </PropertyGroup>
 
+  <!-- Fix for OpenAPI source generator incompatibility: replace assignments to IOpenApiMediaType.Example
+       (read-only in some Microsoft.OpenApi versions) with Schema.Example in generated files before compile. -->
+  <Target Name="FixOpenApiGeneratedFiles" BeforeTargets="CoreCompile">
+    <ItemGroup>
+      <_FixScriptLines Include="Get-ChildItem -Path '$(IntermediateOutputPath)' -Filter 'OpenApiXmlCommentSupport.generated.cs' -Recurse -ErrorAction SilentlyContinue | ForEach-Object {" />
+      <_FixScriptLines Include="  $text = Get-Content -Raw $_.FullName" />
+      <_FixScriptLines Include="  $new = $text -replace '\\.Example\\s*=','\.Schema.Example ='" />
+      <_FixScriptLines Include="  if ($new -ne $text) { Set-Content -LiteralPath $_.FullName -Value $new }" />
+      <_FixScriptLines Include="}" />
+    </ItemGroup>
+    <WriteLinesToFile File="$(IntermediateOutputPath)FixOpenApiGen.ps1" Lines="@(_FixScriptLines)" Overwrite="true" />
+    <Exec Command="powershell -NoProfile -ExecutionPolicy Bypass -File &quot;$(IntermediateOutputPath)FixOpenApiGen.ps1&quot;" />
+  </Target>
+
   <ItemGroup>
     <Compile Remove="ConverterRailWayUrl.cs" />
   </ItemGroup>
