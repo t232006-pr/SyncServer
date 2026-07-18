@@ -8,7 +8,7 @@ namespace SyncServer
     public interface ISyncTables
     {
         public int Id { get; set; }
-        public uint DBID { get; set; }
+        public int DBID { get; set; }
         public DateTime? Modification_Time { get; set; }
         public bool IsDeleted { get; set; }
 
@@ -22,7 +22,7 @@ namespace SyncServer
     {
         [Column("Number")]
         public int Id { get; set; }
-        public uint DBID { get; set; }
+        public int DBID { get; set; }
         public string Word { get; set; } = string.Empty;
         public string Translation { get; set; } = string.Empty;
         public int? Topic { get; set; }
@@ -51,6 +51,6 @@ namespace SyncServer
         public string Name { get; set; } = string.Empty;
         public bool IsDeleted { get; set; }
         public DateTime? Modification_Time { get; set; }
-        public uint DBID { get; set; }
+        public int DBID { get; set; }
     }
 }
