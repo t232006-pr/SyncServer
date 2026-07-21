@@ -42,7 +42,7 @@ public class SyncController : ControllerBase
     {
         foreach (var incoming in items)
         {
-            var existing = await set.FindAsync(incoming.DBID, incoming.Id);
+            var existing = await set.FindAsync(incoming.DBID, incoming.Modification_Time);
 
             if (existing is null)
             {

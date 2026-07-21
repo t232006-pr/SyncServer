@@ -13,6 +13,6 @@
   },
 
   "ConnectionStrings": {
-    "DefaultConnection": "Host=ep-shy-leaf-abjc2ofn-pooler.eu-west-2.aws.neon.tech;Port=5432;Database=neondb;Username=neondb_owner;Password=npg_G0FLy2vqmOfX;Ssl Mode=Require;Trust Server Certificate=true;Channel Binding=Require"
+    "DefaultConnection": "Host=ep-shy-leaf-abjc2ofn-pooler.eu-west-2.aws.neon.tech;Port=5432;Database=neondb;Username=neondb_owner;Password=;p7qOIEu1zs0ePjooHKYd Mode=Require;Trust Server Certificate=true;Channel Binding=Require"
   }
 }

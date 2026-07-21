@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SyncServer;
@@ -11,9 +12,11 @@ using SyncServer;
 namespace SyncServer.Migrations
 {
     [DbContext(typeof(SyncDBContext))]
-    partial class SyncDBContextModelSnapshot : ModelSnapshot
+    [Migration("20260720122354_IndexChange")]
+    partial class IndexChange
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,7 +31,8 @@ namespace SyncServer.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("DBID")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("Number");
 
                     b.Property<DateOnly>("DateRec")
                         .HasColumnType("date");
@@ -49,8 +53,8 @@ namespace SyncServer.Migrations
                     b.Property<bool>("Spot")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("TopicName")
-                        .HasColumnType("text");
+                    b.Property<int?>("Topic")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Translation")
                         .IsRequired()
@@ -67,7 +71,7 @@ namespace SyncServer.Migrations
 
                     b.HasIndex("Modification_Time");
 
-                    b.ToTable("dict");
+                    b.ToTable("Dict");
                 });
 
             modelBuilder.Entity("SyncServer.Topic", b =>

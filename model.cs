@@ -7,25 +7,19 @@ namespace SyncServer
 {
     public interface ISyncTables
     {
-        public int Id { get; set; }
         public int DBID { get; set; }
         public DateTime? Modification_Time { get; set; }
         public bool IsDeleted { get; set; }
 
     };
-    [Table("Dict")]
-    [Index(nameof(Word))]
-    [Index(nameof(Translation))]
-    [Index(nameof(DateRec))]
-
+    [Table("dict")]
+    [Index(nameof(Modification_Time))]
     public class Dict : ISyncTables
     {
-        [Column("Number")]
-        public int Id { get; set; }
         public int DBID { get; set; }
         public string Word { get; set; } = string.Empty;
         public string Translation { get; set; } = string.Empty;
-        public int? Topic { get; set; }
+        public string? TopicName { get; set; }
 
         // Храним только дату (без времени)
         [Column(TypeName = "date")]
@@ -44,10 +38,9 @@ namespace SyncServer
     
 
     [Table("topic")]
-    [Index(nameof(Name))]
+    [Index(nameof(Modification_Time))]
     public class Topic: ISyncTables
     {
-        public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public bool IsDeleted { get; set; }
         public DateTime? Modification_Time { get; set; }

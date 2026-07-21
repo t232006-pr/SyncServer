@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SyncServer;
@@ -11,9 +12,11 @@ using SyncServer;
 namespace SyncServer.Migrations
 {
     [DbContext(typeof(SyncDBContext))]
-    partial class SyncDBContextModelSnapshot : ModelSnapshot
+    [Migration("20260720124720_IndexChange1")]
+    partial class IndexChange1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,8 +52,8 @@ namespace SyncServer.Migrations
                     b.Property<bool>("Spot")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("TopicName")
-                        .HasColumnType("text");
+                    b.Property<int?>("Topic")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Translation")
                         .IsRequired()
